@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="Stylesheets/style.css">
         <title>Hangman</title>
         <script src="Scripts/jquery-3.7.1.js" defer></script>
         <script src="Scripts/Word.js" defer></script>
@@ -11,7 +12,12 @@
     <body class="inter-regular">
         <div id="wrapper">
             <h1>Hangman</h1>
+            <p id="hint"></p>
             <div id="game-area"></div>
+            <div id="after-game-area">
+                <p id="after-game-message"></p>
+                <input type="button" id="play-again-button" value="Play Again">
+            </div>
         </div>
     </body>
 </html>

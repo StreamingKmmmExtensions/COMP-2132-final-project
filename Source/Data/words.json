@@ -1,26 +1,122 @@
 [
   {
-    "word": "",
-    "hint": ""
+    "word": "elephant",
+    "hint": "Large gray animal with a trunk"
   },
   {
-    "word": "",
-    "hint": ""
+    "word": "guitar",
+    "hint": "Six-stringed musical instrument"
   },
   {
-    "word": "",
-    "hint": ""
+    "word": "volcano",
+    "hint": "Mountain that erupts lava"
   },
   {
-    "word": "",
-    "hint": ""
+    "word": "butterfly",
+    "hint": "Colorful insect that metamorphoses"
   },
   {
-    "word": "",
-    "hint": ""
+    "word": "telescope",
+    "hint": "Device to see distant stars"
   },
   {
-    "word": "",
-    "hint": ""
+    "word": "sandwich",
+    "hint": "Food between two slices of bread"
+  },
+  {
+    "word": "whirlpool",
+    "hint": "Spinning water vortex"
+  },
+  {
+    "word": "skeleton",
+    "hint": "Bony framework inside body"
+  },
+  {
+    "word": "compass",
+    "hint": "Tool pointing to magnetic north"
+  },
+  {
+    "word": "rainbow",
+    "hint": "Colorful arc after rain"
+  },
+  {
+    "word": "submarine",
+    "hint": "Underwater naval vessel"
+  },
+  {
+    "word": "thermometer",
+    "hint": "Device measuring temperature"
+  },
+  {
+    "word": "tornado",
+    "hint": "Violently rotating column of air"
+  },
+  {
+    "word": "lantern",
+    "hint": "Portable light source"
+  },
+  {
+    "word": "caterpillar",
+    "hint": "Larva that becomes a butterfly"
+  },
+  {
+    "word": "microscope",
+    "hint": "Device to see tiny objects"
+  },
+  {
+    "word": "pyramid",
+    "hint": "Ancient triangular tomb"
+  },
+  {
+    "word": "octopus",
+    "hint": "Eight-armed sea creature"
+  },
+  {
+    "word": "umbrella",
+    "hint": "Canopy protecting from rain"
+  },
+  {
+    "word": "sunflower",
+    "hint": "Tall yellow flower tracking sun"
+  },
+  {
+    "word": "hummingbird",
+    "hint": "Tiny bird hovering mid-air"
+  },
+  {
+    "word": "compass",
+    "hint": "Tool finding directions"
+  },
+  {
+    "word": "volcano",
+    "hint": "Erupting mountain"
+  },
+  {
+    "word": "butterfly",
+    "hint": "Colorful flying insect"
+  },
+  {
+    "word": "telescope",
+    "hint": "Star-gazing instrument"
+  },
+  {
+    "word": "sandwich",
+    "hint": "Bread with filling"
+  },
+  {
+    "word": "whirlpool",
+    "hint": "Swirling water"
+  },
+  {
+    "word": "skeleton",
+    "hint": "Body's bones"
+  },
+  {
+    "word": "compass",
+    "hint": "Navigation tool"
+  },
+  {
+    "word": "rainbow",
+    "hint": "Sky colors after rain"
   }
 ]

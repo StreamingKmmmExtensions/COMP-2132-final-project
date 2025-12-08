@@ -1,12 +1,10 @@
-const MAX_TRIES = 6;
-
-let tries = 0;
-
-
 const $gameArea = $("#game-area");
 
 
-$gameArea.html(generateGameArea());
+generateGameArea();
+
+$("#play-again-button").on("click", (e) => generateGameArea());
+
 
 
 
@@ -14,16 +12,24 @@ $gameArea.html(generateGameArea());
 
 function generateGameArea()
 {
-    let html = "";
-    let words = fetch("Data/words.json");
-    //let word = new Word(words[Math.floor(Math.random() * words.length)]);
-    let word = new Word("Blah");
+    fetch("Data/words.json")
+        .then((response) => {
+            if (!response.ok)
+            {
+                throw new Error("Network error");
+            }
 
+            return response.json();
+        })
+        .then((jsonData) => {
+            const words = jsonData;
+            const randomIndex = Math.floor(Math.random() * words.length);
+            const word = new Word(words[randomIndex]["word"], words[randomIndex]["hint"]);
 
-    // TODO: Make stick figure images
-    /*html += `<img id="hangman-img" src="Images/stick-figure-01.webp" alt="">`;*/
-    html += word.getInputBox();
-
-
-    return html;
+            // TODO: Make stick figure images
+            /*html += `<img id="hangman-img" src="Images/stick-figure-01.webp" alt="">`;*/
+            $gameArea.html(word.getInputBox());
+            word.setupInputEvents();
+        })
+        .catch(() => $("#hint").html("Could not load JSON due to network error."));
 }

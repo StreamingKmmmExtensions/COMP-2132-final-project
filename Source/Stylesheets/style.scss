@@ -1,0 +1,48 @@
+:root {
+  --active-colour: #64D9E8;
+  --good-colour: #64E871;
+  --bad-colour: #E86477;
+
+  --background-colour: #232323;
+  --foreground-colour: #eee;
+
+  --outline-size: 2px;
+}
+
+
+html {
+  background-color: var(--background-colour);
+  color: var(--foreground-colour);
+}
+
+
+input {
+  border-radius: 5px;
+  padding: 0.5em;
+}
+
+input:active,
+input:focus {
+  outline: none;
+  border: var(--outline-size) solid var(--active-colour);
+}
+
+
+.correct-input {
+  border: var(--outline-size) solid var(--good-colour);
+}
+
+.incorrect-input {
+  border: var(--outline-size) solid var(--bad-colour);
+}
+
+
+
+
+
+
+#game-area {
+  input + input {
+    margin: 0 0.5em;
+  }
+}
