@@ -38,6 +38,14 @@ input {
   padding: 0.5em;
 }
 
+.correct-input {
+  @include customBorder($goodColour);
+}
+
+.incorrect-input {
+  @include customBorder($badColour);
+}
+
 input:active,
 input:focus {
   outline: none;
@@ -46,15 +54,6 @@ input:focus {
 
 input:disabled {
   @include colours($foregroundColour, #5F5F5F);
-}
-
-
-.correct-input {
-  @include customBorder($goodColour);
-}
-
-.incorrect-input {
-  @include customBorder($badColour);
 }
 
 .ubuntu-light {

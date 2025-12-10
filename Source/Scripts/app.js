@@ -3,7 +3,7 @@ const $gameArea = $("#game-area");
 
 generateGameArea();
 
-$("#play-again-button").on("click", (e) => generateGameArea());
+$("#play-again-button").on("click", () => generateGameArea());
 
 
 
@@ -13,6 +13,7 @@ $("#play-again-button").on("click", (e) => generateGameArea());
 function generateGameArea()
 {
     $("#after-game-message").html("");
+    $("#after-game-area").hide();
 
     fetch("Data/words.json")
         .then((response) => {
@@ -34,4 +35,25 @@ function generateGameArea()
             word.setupInputEvents();
         })
         .catch(() => $("#hint").html("Could not load JSON due to network error."));
+}
+
+
+
+
+
+
+function arrayContains(array, object)
+{
+    for (let i = 0;
+         i < array.length;
+         i++)
+    {
+        if (array[i] === object)
+        {
+            return true;
+        }
+    }
+
+
+    return false;
 }
