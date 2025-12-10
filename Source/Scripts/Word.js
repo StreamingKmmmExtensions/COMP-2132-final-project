@@ -175,8 +175,6 @@ class Word
 
                     this.#tries++;
 
-                    const animationHandler = requestAnimationFrame(null);
-
                     $("#hangman-img").attr("src", `Images/0${this.#tries}.png`);
                 }
 
