@@ -28,6 +28,11 @@ html {
   @include colours($foregroundColour, $backgroundColour);
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 input[type=text] {
   width: 1em;
   text-align: center;
@@ -114,4 +119,15 @@ input:disabled {
   input + input {
     margin: 0 0.5em;
   }
+}
+
+/*
+#input-div {
+  display: flex;
+  flex-direction: row;
+}*/
+
+#hangman-img {
+  width: 30%;
+  margin: 1em;
 }

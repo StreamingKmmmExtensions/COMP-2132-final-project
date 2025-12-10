@@ -3,8 +3,8 @@ const LETTER_NOT_FOUND = -1;
 
 class Word
 {
-    #name;
-    #uuids;
+    #word;
+    #uuids; // UUIDs of the <input>s for entering letters
     #tries;
     #maxTries;
 
@@ -14,20 +14,29 @@ class Word
 
     constructor(name, hint)
     {
-        this.#name = name;
+        this.#word = name;
         this.#uuids = Array(name.length);
         this.#tries = 0;
 
         $("#hint").html(`Hint: ${hint}`);
 
-        if (this.#name.length < MAX_TRIES)
+        if (this.#word.length < MAX_TRIES)
         {
-            this.#maxTries = this.#name.length;
+            this.#maxTries = this.#word.length;
         }
         else
         {
             this.#maxTries = MAX_TRIES;
         }
+    }
+
+
+
+
+
+    #fadeAnimation()
+    {
+
     }
 
 
@@ -40,7 +49,7 @@ class Word
 
 
         for (let i = 0;
-             i < this.#name.length;
+             i < this.#word.length;
              i++)
         {
             answer += $(`#${this.#uuids[i]}`).val();
@@ -61,17 +70,17 @@ class Word
      */
     #getIndexOfLetter(letter)
     {
-        if (!arrayContains(this.#name, letter))
+        if (!arrayContains(this.#word, letter))
         {
             return LETTER_NOT_FOUND;
         }
 
 
         for (let i = 0;
-             i < this.#name.length;
+             i < this.#word.length;
              i++)
         {
-            if (this.#name[i].toLowerCase() === letter.toLowerCase() &&
+            if (this.#word[i].toLowerCase() === letter.toLowerCase() &&
                 $(`#${this.#uuids[i]}`).val() === "")
             {
                 return i;
@@ -88,18 +97,20 @@ class Word
 
     getInputBox()
     {
-        let html = "";
+        let html = "<img id=\"hangman-img\" src=\"Images/00.png\" alt=\"hang-man-img\"><div id=\"input-div\">";
 
 
         // Add Elements
         for (let i = 0;
-             i < this.#name.length;
+             i < this.#word.length;
              i++)
         {
             this.#uuids[i] = self.crypto.randomUUID();
 
             html += `<input type="text" maxlength="1" id="${this.#uuids[i]}">`;
         }
+
+        html += "</div>";
 
         return html;
     }
@@ -112,7 +123,7 @@ class Word
     setupInputEvents()
     {
         for (let i = 0;
-             i < this.#name.length;
+             i < this.#word.length;
              i++)
         {
             const $element = $(`#${this.#uuids[i]}`);
@@ -130,18 +141,18 @@ class Word
                 const letter = $element.val().toLowerCase();
 
 
-                if (letter === this.#name[i].toLowerCase())
+                if (letter === this.#word[i].toLowerCase())
                 {
                     $element.removeClass("incorrect-input");
                     $element.addClass("correct-input");
                     $element.attr("disabled", true);
 
-                    if (i !== this.#name.length - 1)
+                    if (i !== this.#word.length - 1)
                     {
                         $(`#${this.#uuids[i + 1]}`).focus();
                     }
                 }
-                else if (arrayContains(this.#name, letter))
+                else if (arrayContains(this.#word, letter))
                 {
                     const indexOfLetter = this.#getIndexOfLetter(letter);
 
@@ -149,8 +160,6 @@ class Word
                     if (indexOfLetter !== LETTER_NOT_FOUND)
                     {
                         const $targetElement = $(`#${this.#uuids[indexOfLetter]}`);
-
-                        //console.log(`array contains and letter found: ${indexOfLetter}`);
 
                         $targetElement.val(letter);
                         $targetElement.removeClass("incorrect-input");
@@ -163,7 +172,12 @@ class Word
                 {
                     $element.removeClass("correct-input");
                     $element.addClass("incorrect-input");
+
                     this.#tries++;
+
+                    const animationHandler = requestAnimationFrame(null);
+
+                    $("#hangman-img").attr("src", `Images/0${this.#tries}.png`);
                 }
 
 
@@ -173,7 +187,7 @@ class Word
                 {
                     this.validateAnswer(this.getAnswer());
                 }
-                else if (this.getAnswer() === this.#name.toLowerCase())
+                else if (this.getAnswer() === this.#word.toLowerCase())
                 {
                     $("#after-game-message").html("You win!");
                     $("#after-game-area").show();
@@ -188,13 +202,13 @@ class Word
 
     validateAnswer(str)
     {
-        if (str.toLowerCase() === this.#name.toLowerCase())
+        if (str.toLowerCase() === this.#word.toLowerCase())
         {
             $("#after-game-message").html("You win!");
         }
         else
         {
-            $("#after-game-message").html(`Sorry, better luck next time. The correct answer was "${this.#name}."`);
+            $("#after-game-message").html(`Sorry, better luck next time. The correct answer was "${this.#word}."`);
 
             for (let i = 0;
                  i < this.#uuids.length;
