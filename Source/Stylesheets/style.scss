@@ -1,20 +1,37 @@
-:root {
-  --active-colour: #64D9E8;
-  --good-colour: #64E871;
-  --bad-colour: #E86477;
+@charset "utf-8";
 
-  --background-colour: #232323;
-  --foreground-colour: #eee;
+$activeColour: #64D9E8;
+$goodColour: #64E871;
+$badColour: #E86477;
+$backgroundColour: #232323;
+$foregroundColour: #eee;
 
-  --outline-size: 2px;
+$outlineSize: 2px;
+
+@mixin customBorder($colour) {
+  border: $outlineSize solid $colour;
+}
+
+@mixin colours($_foregroundColour, $_backgroundColour) {
+  background-color: $_backgroundColour;
+  color: $_foregroundColour;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 
 html {
-  background-color: var(--background-colour);
-  color: var(--foreground-colour);
+  @include colours($foregroundColour, $backgroundColour);
 }
 
+input[type=text] {
+  width: 1em;
+  text-align: center;
+}
 
 input {
   border-radius: 5px;
@@ -24,17 +41,70 @@ input {
 input:active,
 input:focus {
   outline: none;
-  border: var(--outline-size) solid var(--active-colour);
+  @include customBorder($activeColour);
+}
+
+input:disabled {
+  @include colours($foregroundColour, #5F5F5F);
 }
 
 
 .correct-input {
-  border: var(--outline-size) solid var(--good-colour);
+  @include customBorder($goodColour);
 }
 
 .incorrect-input {
-  border: var(--outline-size) solid var(--bad-colour);
+  @include customBorder($badColour);
 }
+
+.ubuntu-light {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-medium {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ubuntu-bold {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.ubuntu-light-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.ubuntu-regular-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.ubuntu-medium-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.ubuntu-bold-italic {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
 
 
 

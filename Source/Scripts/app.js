@@ -12,6 +12,8 @@ $("#play-again-button").on("click", (e) => generateGameArea());
 
 function generateGameArea()
 {
+    $("#after-game-message").html("");
+
     fetch("Data/words.json")
         .then((response) => {
             if (!response.ok)

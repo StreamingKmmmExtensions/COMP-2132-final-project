@@ -17,7 +17,7 @@ class Word
         this.#uuids = Array(name.length);
         this.#tries = 0;
 
-        $("#hint").html(hint);
+        $("#hint").html(`Hint: ${hint}`);
 
         if (this.#name.length < MAX_TRIES)
         {
@@ -86,12 +86,17 @@ class Word
 
             $element.on("input", (e) =>
             {
-                $element.attr("disabled", true);
+                if (!$(e.target).val().match("[a-zA-Z]"))
+                {
+                    console.log("Space");
+                    return;
+                }
 
                 if ($element.val().toLowerCase() === this.#name[i].toLowerCase())
                 {
                     $element.removeClass("incorrect-input");
                     $element.addClass("correct-input");
+                    $element.attr("disabled", true);
                 }
                 else
                 {
@@ -100,11 +105,20 @@ class Word
                     this.#tries++;
                 }
 
+                if (i !== this.#name.length - 1)
+                {
+                    $(`#${this.#uuids[i + 1]}`).focus();
+                }
+
 
 
                 if (this.#tries >= this.#maxTries)
                 {
                     this.validateAnswer(this.getAnswer());
+                }
+                else if (this.getAnswer() === this.#name.toLowerCase())
+                {
+                    $("#after-game-message").html("You win!");
                 }
             });
         }
@@ -116,14 +130,20 @@ class Word
 
     validateAnswer(str)
     {
-        // TODO: Game over
         if (str.toLowerCase() === this.#name.toLowerCase())
         {
             $("#after-game-message").html("You win!");
         }
         else
         {
-            $("#after-game-message").html(`Sorry, better luck next time. The correct answer was ${this.#name}.`);
+            $("#after-game-message").html(`Sorry, better luck next time. The correct answer was "${this.#name}."`);
+
+            for (let i = 0;
+                 i < this.#uuids.length;
+                 i++)
+            {
+                $(`#${this.#uuids[i]}`).attr("disabled", true);
+            }
         }
     }
 }
